@@ -10,7 +10,159 @@ function random(min, max) {
 }
 
 
-let seattle = {
+let Shops = [];
+function Shop(locationName, minCustomers, maxCustomers, avgCookies) {
+    this.locationName = locationName;
+    this.minCustomers = minCustomers;
+    this.maxCustomers = maxCustomers;
+    this.avgCookies = avgCookies;
+    this.totalCookiesPerDay = 0;
+    this.customersEachHour = [];
+    this.cookiesEachHour = [];
+    // console.log(this);
+    Shops.push(this);
+}
+
+
+Shop.prototype.calcCustomersEachHour = function () {
+    for (let i = 0; i < hours.length; i++) {
+
+        this.customersEachHour.push(random(this.minCustomers, this.maxCustomers));
+    }
+}
+Shop.prototype.calecCookiesEachHour = function () {
+    for (let i = 0; i < hours.length; i++) {
+        this.cookiesEachHour.push(Math.floor(this.customersEachHour[i] * this.avgCookies));
+        this.totalCookiesPerDay += this.cookiesEachHour[i];
+    }
+}
+
+
+//make new ins
+
+let seattle = new Shop('Seattle', 23, 65, 6.3);
+let tokyo = new Shop('Tokyo', 3, 24, 1.2);
+let dubai = new Shop('Dubai', 11, 38, 3.7);
+let paris = new Shop('Paris', 20, 38, 2.3);
+let lima = new Shop('Lima', 2, 16, 4.6);
+
+
+
+
+
+//seattle.calcCustomersEachHour();
+//seattle.calecCookiesEachHour();
+//console.log(seattle);
+
+let parent = document.getElementById('parent');
+let table = document.createElement('table');
+parent.appendChild(table);
+
+//header fun
+
+function makeHeader() {
+
+    let headerRow = document.createElement('tr');
+    table.appendChild(headerRow);
+
+    let firstTh = document.createElement('th');
+    headerRow.appendChild(firstTh);
+    firstTh.textContent = 'Name';
+
+    for (let i = 0; i < hours.length; i++) {
+
+        let hoursTh = document.createElement('th');
+        headerRow.appendChild(hoursTh);
+        hoursTh.textContent = hours[i];
+
+
+    }
+    let lastTh = document.createElement('th');
+    headerRow.appendChild(lastTh);
+    lastTh.textContent = '  Daily Location Total';
+
+}
+
+
+//render meth
+
+Shop.prototype.render = function () {
+
+    let dataRow = document.createElement('tr');
+    table.appendChild(dataRow);
+    let nameTd = document.createElement('td');
+    dataRow.appendChild(nameTd);
+    nameTd.textContent = this.locationName;
+
+    for (let i = 0; i < hours.length; i++) {
+
+        let cookiesTd = document.createElement('td');
+        dataRow.appendChild(cookiesTd);
+        cookiesTd.textContent = this.cookiesEachHour[i];
+
+    }
+    let totalTd = document.createElement('td');
+    dataRow.appendChild(totalTd);
+    totalTd.textContent = this.totalCookiesPerDay;
+
+
+
+}
+//footer fun
+function makefooter() {
+
+    let footerRow = document.createElement('tr');
+    table.appendChild(footerRow);
+
+    let firstTh = document.createElement('th');
+    footerRow.appendChild(firstTh);
+
+    firstTh.textContent = 'Totals';
+
+    let totalOfTotals = 0;
+
+
+    for (let i = 0; i < hours.length; i++) {
+
+        let totalForEachHour = 0;
+        for (let j = 0; j < Shops.length; j++) {
+
+            // console.log(Shops[j].cookiesEachHour[i]);
+            totalForEachHour += Shops[j].cookiesEachHour[i];
+            totalOfTotals += Shops[j].cookiesEachHour[i];
+        }
+        // console.log(totalForEachHour);
+        // console.log('totalsss', totalOfTotals);
+        let footerTh = document.createElement('th');
+        footerRow.appendChild(footerTh);
+        footerTh.textContent = totalForEachHour;
+
+    }
+
+    let lastTh = document.createElement('th');
+    footerRow.appendChild(lastTh);
+
+    lastTh.textContent = totalOfTotals;
+
+
+}
+
+////calls
+
+makeHeader();
+for (let i = 0; i < Shops.length; i++) {
+    console.log(Shops[i]);
+    Shops[i].calcCustomersEachHour();
+    Shops[i].calecCookiesEachHour();
+    Shops[i].render();
+}
+
+makefooter();
+
+
+
+
+/*let seattle = {
     location: 'Seattle',
     minCustormers: 23,
     maxCustormers: 65,
@@ -131,7 +283,7 @@ tokyo.render();
 
 
 
-//for dubai 
+//for dubai
 let dubai = {
     location: 'Dubai',
     minCustormers: 11,
@@ -301,4 +453,4 @@ lima.calcCustomersEachHour();
 //console.log(seattle.customersEachHour);
 lima.calecCookiesEachHour();
 //console.log(seattle.cookiesEachHour);
-lima.render();
+lima.render();*/
