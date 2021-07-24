@@ -1,11 +1,11 @@
 
 body{
 
-background-color: coral;
-color:crimson;
-font-family: 'Montserrat', sans-serif;
-
+background-color: rgb(55, 163, 158);
+color:
+font-family  'Montserrat', sans-serif;
 }
+
   header{
     text-align: center;
     margin: 5px auto;
@@ -26,22 +26,23 @@ font-family: 'Montserrat', sans-serif;
    nav li{
 
 display: inline-block;
+font-size: medium;
 width: 15%;
 padding: 10px 10px;
  border: 5px blue;
 
    }
    #Salmon{
-       width: 55px;
+       width: 85px;
    } 
 
    #chinook{
-       width: 55px;
+       width: 85px;
    }
 
    a {
        text-decoration: none;
-       color: blueviolet;
+       color: rgb(78, 3, 175);
    }
    
    main{
@@ -96,16 +97,17 @@ padding: 10px 10px;
     text-align: center;
 }
  footer{
-background-color: crimson;
+background-color: rgb(207, 185, 189);
 height: 100px;
 color: darkgoldenrod;
     font-family: 'Montserrat', sans-serif;
      box-sizing: border-box;
      padding-top: 25px;
      margin-top: 45px;
+     text-align: center;
  }
 
- h1 ,h2{
+ h1 ,h2 ,h3{
 
     color :brown;
      font-family: 'H Helvetica', sans-serif;   
@@ -114,8 +116,13 @@ color: darkgoldenrod;
 
 table, td, th{
     border: solid black 2px;
+    text-align: center;
     border-collapse: collapse;
-    color:chocolate;
+    color:rgb(14, 6, 121);
+    padding-right: 50px;
+    margin-bottom: 20px;
 }
+
+
 
 
