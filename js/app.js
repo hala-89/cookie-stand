@@ -147,8 +147,56 @@ function makefooter() {
 
 }
 
-////calls
+/////add event
+let form = document.getElementById('form');
 
+form.addEventListener('submit', submitter);
+
+
+function submitter(event) {
+
+
+    event.preventDefault();
+
+    console.log(event);
+
+
+
+    let locationName =  event.target.loactionName.value;
+
+    console.log(locationName);
+
+    var minCustomers =parseInt( event.target.minCustomers.value);
+    console.log(minCustomers);
+
+    let maxCustomers = parseInt(event.target.maxCustomers.value);
+    console.log(maxCustomers);
+
+    let avgCookies =parseFloat( event.target.avgCookies.value);
+    console.log(avgCookies);
+      
+
+   
+    let addedShop =new Shop(locationName,minCustomers,maxCustomers,avgCookies);
+    
+
+    console.log(Shops);
+
+    
+    addedShop.calcCustomersEachHour();
+    addedShop.calecCookiesEachHour();
+    table.textContent=" ";
+    makeHeader();
+    for (let i = 0; i < Shops.length; i++) {
+       
+        Shops[i].render();
+    }
+    
+    makefooter();     
+
+}
+
+////calls 
 makeHeader();
 for (let i = 0; i < Shops.length; i++) {
     console.log(Shops[i]);
